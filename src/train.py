@@ -1,16 +1,31 @@
 import numpy as np
 from preprocess import get_datasets
 from models.basic_model import BasicModel
+from models.random_model import RandomModel
+from models.transfered_model import TransferedModel
 from models.model import Model
 from config import image_size
 import matplotlib.pyplot as plt
 import time
+import models.hyper_model as hyper_mod
+import argparse
+
+
+# python train.py --model hyper 
+# to run the hyper model not working atm though 
 
 input_shape = (image_size[0], image_size[1], 3)
 categories_count = 3
 
+# models = {
+#     'basic_model': BasicModel,
+# }
+
 models = {
-    'basic_model': BasicModel,
+    'basic': BasicModel,
+    'random': RandomModel,
+    'transfered': TransferedModel,
+    'hyper': hyper_mod.HyperModel,
 }
 
 def plot_history(history):
@@ -47,7 +62,7 @@ if __name__ == "__main__":
     epochs = 10
     print('* Data preprocessing')
     train_dataset, validation_dataset, test_dataset = get_datasets()
-    name = 'basic_model'
+    name = 'hyper'
     model_class = models[name]
     print('* Training {} for {} epochs'.format(name, epochs))
     model = model_class(input_shape, categories_count)
