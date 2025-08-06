@@ -1,0 +1,4 @@
+30/30 [==============================] - 4s 118ms/step - loss: 0.7911 - accuracy: 0.6905
+>>> print(f"Test Loss: {loss:.4f}")
+Test Loss: 0.7911
+>>> print(f"Test Accuracy: {acc:.4f}")
